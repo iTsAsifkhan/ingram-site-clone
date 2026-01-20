@@ -17,6 +17,14 @@ export default {
         sans: ['Poppins', 'sans-serif'],
       },
       colors: {
+        // BookBaby Brand Colors
+        'vibrant-orange': 'hsl(var(--vibrant-orange))',
+        'leaf-green': 'hsl(var(--leaf-green))',
+        'sky-blue': 'hsl(var(--sky-blue))',
+        'deep-charcoal': 'hsl(var(--deep-charcoal))',
+        'bright-yellow': 'hsl(var(--bright-yellow))',
+        gold: "hsl(var(--gold))",
+        
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -50,10 +58,6 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        gold: "hsl(var(--gold))",
-        "sky-blue": "hsl(var(--sky-blue))",
-        "deep-blue": "hsl(var(--deep-blue))",
-        navy: "hsl(var(--navy))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
