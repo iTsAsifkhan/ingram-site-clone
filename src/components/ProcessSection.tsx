@@ -43,9 +43,9 @@ const ProcessSection = () => {
         </div>
 
         {/* Process Steps */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
           {steps.map((item, index) => (
-            <div key={index} className="process-step group">
+            <div key={index} className="process-step group relative">
               {/* Step Number & Icon */}
               <div className="relative mb-6">
                 <div className="w-24 h-24 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -66,7 +66,7 @@ const ProcessSection = () => {
 
               {/* Connector Line (hidden on last item and mobile) */}
               {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-12 left-[calc(100%+1rem)] w-[calc(100%-2rem)] h-0.5 bg-gradient-to-r from-primary to-transparent"></div>
+                <div className="hidden lg:block absolute top-12 -right-[calc(50%+1rem)] w-[calc(100%+2rem)] h-0.5 bg-gradient-to-r from-primary to-transparent"></div>
               )}
             </div>
           ))}
