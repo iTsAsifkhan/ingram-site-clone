@@ -64,10 +64,7 @@ const ProcessSection = () => {
                 {item.description}
               </p>
 
-              {/* Connector Line (hidden on last item and mobile) */}
-              {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-12 -right-[calc(50%+1rem)] w-[calc(100%+2rem)] h-0.5 bg-gradient-to-r from-primary to-transparent"></div>
-              )}
+              {/* Connector Line handled via CSS (hidden on mobile) */}
             </div>
           ))}
         </div>
