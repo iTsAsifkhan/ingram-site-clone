@@ -29,14 +29,14 @@ app.post('/send', async (req, res) => {
     return res.status(400).json({ error: 'All fields are required' });
   }
 
-  // Nodemailer transporter using Hostinger SMTP
+  // Nodemailer transporter using cPanel email
   const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,            // ozzydesignagency.com
-    port: process.env.SMTP_PORT === '587' ? 587 : 465,
-    secure: process.env.SMTP_PORT !== '587', // true for 465, false for 587
+    host: process.env.SMTP_HOST,
+    port: parseInt(process.env.SMTP_PORT),
+    secure: process.env.SMTP_PORT === '465', // true for 465, false for 2079
     auth: {
-      user: process.env.EMAIL_USER,          // your email
-      pass: process.env.EMAIL_PASS,          // your email password
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
     connectionTimeout: 5000,
     socketTimeout: 5000,
