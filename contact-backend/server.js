@@ -1,23 +1,22 @@
 // server.js
 const express = require('express');
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Middleware
 app.use(cors({
   origin: ['https://plum-pigeon-480623.hostingersite.com', 'http://localhost:8080', 'http://localhost:5173'],
   credentials: true
 }));
-app.use(express.json());     // parse JSON requests
+app.use(express.json());
 
-console.log('Server starting... Env vars loaded:');
-console.log('SMTP_HOST:', process.env.SMTP_HOST);
-console.log('SMTP_PORT:', process.env.SMTP_PORT);
-console.log('EMAIL_USER:', process.env.EMAIL_USER);
+console.log('Server starting... Using Resend for email delivery');
+console.log('RESEND_API_KEY loaded:', !!process.env.RESEND_API_KEY);
 
 // POST endpoint to handle contact form submissions
 app.post('/send', async (req, res) => {
@@ -29,43 +28,27 @@ app.post('/send', async (req, res) => {
     return res.status(400).json({ error: 'All fields are required' });
   }
 
-  // Nodemailer transporter using Gmail SMTP
-  const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT),
-    secure: process.env.SMTP_PORT === '465', // true for 465 (SSL), false for 587 (TLS)
-    requireTLS: true,
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-    connectionTimeout: 10000,
-    socketTimeout: 10000,
-  });
-
   try {
-    console.log('Attempting to send email from:', process.env.EMAIL_USER);
+    console.log('Attempting to send email to: asf@ozzydesignagency.com');
     
-    // Add a 20 second timeout for the entire email operation
-    const emailPromise = transporter.sendMail({
-      from: process.env.EMAIL_USER,           // Use the authenticated email as sender
-      to: 'asf@ozzydesignagency.com',         // Send to business email
-      replyTo: email,                         // Set user's email as reply-to instead
+    const data = await resend.emails.send({
+      from: 'noreply@resend.dev',
+      to: 'asf@ozzydesignagency.com',
+      replyTo: email,
       subject: `New message from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
+      html: `
+        <h2>New Inquiry Received</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong></p>
+        <pre>${message}</pre>
+      `,
     });
 
-    const timeoutPromise = new Promise((_, reject) =>
-      setTimeout(() => reject(new Error('Email sending timeout')), 20000)
-    );
-
-    await Promise.race([emailPromise, timeoutPromise]);
-
-    console.log('Email sent successfully');
+    console.log('Email sent successfully:', data.id);
     res.status(200).json({ success: true, message: 'Email sent successfully!' });
   } catch (error) {
     console.error('Error sending email:', error.message);
-    console.error('Error code:', error.code);
     res.status(500).json({ success: false, message: `Failed to send email: ${error.message}` });
   }
 });
