@@ -32,14 +32,14 @@ app.post('/send', async (req, res) => {
   // Nodemailer transporter using Hostinger SMTP
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,            // ozzydesignagency.com
-    port: parseInt(process.env.SMTP_PORT),  // 465
-    secure: true,                            // true for 465
+    port: process.env.SMTP_PORT === '587' ? 587 : 465,
+    secure: process.env.SMTP_PORT !== '587', // true for 465, false for 587
     auth: {
       user: process.env.EMAIL_USER,          // your email
       pass: process.env.EMAIL_PASS,          // your email password
     },
-    connectionTimeout: 5000,                 // 5 second timeout
-    socketTimeout: 5000,                     // 5 second timeout
+    connectionTimeout: 5000,
+    socketTimeout: 5000,
   });
 
   try {
