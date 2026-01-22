@@ -29,6 +29,9 @@ const InquiryForm = () => {
     setMessage("");
 
     try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
       const response = await fetch("https://ingram-site-clone-production.up.railway.app/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -42,7 +45,10 @@ const InquiryForm = () => {
             Book Type: ${formData.bookType}
           `,
         }),
+        signal: controller.signal,
       });
+
+      clearTimeout(timeoutId);
 
       if (response.ok) {
         setMessage("Your query has been sent successfully!");
@@ -55,11 +61,17 @@ const InquiryForm = () => {
           bookType: "",
         });
       } else {
-        setMessage("Failed to send your query. Please try again.");
+        const errorData = await response.text();
+        setMessage(`Failed to send your query. Status: ${response.status}`);
+        console.error("Response error:", errorData);
       }
-    } catch (error) {
-      console.error(error);
-      setMessage("An error occurred while sending your query.");
+    } catch (error: any) {
+      console.error("Submit error:", error);
+      if (error.name === "AbortError") {
+        setMessage("Request timeout. Please try again.");
+      } else {
+        setMessage(`An error occurred: ${error.message || "Unknown error"}`);
+      }
     }
 
     setLoading(false);
