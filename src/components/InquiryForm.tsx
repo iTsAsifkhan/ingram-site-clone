@@ -29,7 +29,7 @@ const InquiryForm = () => {
     setMessage("");
 
     try {
-      const response = await fetch("https://plum-pigeon-480623.hostingersite.com/send", {
+      const response = await fetch("https://ingram-site-clone-production.up.railway.app/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
