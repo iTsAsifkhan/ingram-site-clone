@@ -29,11 +29,11 @@ app.post('/send', async (req, res) => {
     return res.status(400).json({ error: 'All fields are required' });
   }
 
-  // Nodemailer transporter using cPanel email
+  // Nodemailer transporter using Gmail SMTP
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: parseInt(process.env.SMTP_PORT),
-    secure: process.env.SMTP_PORT === '465', // true for 465, false for 2079
+    secure: process.env.SMTP_PORT === '465', // true for 465 (SSL), false for 587 (TLS)
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
