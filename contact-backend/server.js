@@ -46,17 +46,17 @@ app.post('/send', async (req, res) => {
   try {
     console.log('Attempting to send email from:', process.env.EMAIL_USER);
     
-    // Add a 10 second timeout for the entire email operation
+    // Add a 20 second timeout for the entire email operation
     const emailPromise = transporter.sendMail({
       from: process.env.EMAIL_USER,           // Use the authenticated email as sender
-      to: process.env.EMAIL_USER,             // your inbox
+      to: 'asf@ozzydesignagency.com',         // Send to business email
       replyTo: email,                         // Set user's email as reply-to instead
       subject: `New message from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
     });
 
     const timeoutPromise = new Promise((_, reject) =>
-      setTimeout(() => reject(new Error('Email sending timeout')), 10000)
+      setTimeout(() => reject(new Error('Email sending timeout')), 20000)
     );
 
     await Promise.race([emailPromise, timeoutPromise]);
