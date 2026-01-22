@@ -32,7 +32,7 @@ app.post('/send', async (req, res) => {
     console.log('Attempting to send email to: asf@ozzydesignagency.com');
     
     const data = await resend.emails.send({
-      from: 'noreply@resend.dev',
+      from: 'noreply@ozzydesignagency.com',
       to: 'asf@ozzydesignagency.com',
       replyTo: email,
       subject: `New message from ${name}`,
