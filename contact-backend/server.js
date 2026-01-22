@@ -34,12 +34,13 @@ app.post('/send', async (req, res) => {
     host: process.env.SMTP_HOST,
     port: parseInt(process.env.SMTP_PORT),
     secure: process.env.SMTP_PORT === '465', // true for 465 (SSL), false for 587 (TLS)
+    requireTLS: true,
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
-    connectionTimeout: 5000,
-    socketTimeout: 5000,
+    connectionTimeout: 10000,
+    socketTimeout: 10000,
   });
 
   try {
