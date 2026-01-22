@@ -8,7 +8,10 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());             // allow your frontend to communicate
+app.use(cors({
+  origin: ['https://plum-pigeon-480623.hostingersite.com', 'http://localhost:8080', 'http://localhost:5173'],
+  credentials: true
+}));
 app.use(express.json());     // parse JSON requests
 
 console.log('Server starting... Env vars loaded:');
