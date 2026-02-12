@@ -1,12 +1,13 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
+@tailwind utilities;
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 0 0% 95%;
     --foreground: 210 29% 24%;
 
     --card: 0 0% 100%;
@@ -15,13 +16,13 @@
     --popover: 0 0% 100%;
     --popover-foreground: 210 29% 24%;
 
-    --primary: 193 54% 58%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 210 8% 13%;
+    --primary-foreground: 0 0% 95%;
 
-    --secondary: 213 67% 33%;
+    --secondary: 175 15% 92%;
     --secondary-foreground: 0 0% 100%;
 
-    --accent: 41 100% 55%;
+    --accent: 44 82% 74%;
     --accent-foreground: 210 29% 24%;
 
     --muted: 210 20% 96%;
@@ -32,18 +33,18 @@
 
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 193 54% 58%;
+    --ring: 44 82% 74%;
 
     --radius: 0.5rem;
 
     /* Custom tokens */
-    --hero-gradient: linear-gradient(135deg, hsl(213 67% 33%) 0%, hsl(213 67% 25%) 100%);
+    --hero-gradient: linear-gradient(135deg, hsl(210 8% 13%) 0%, hsl(210 8% 8%) 100%);
     --section-light: 200 20% 97%;
     --text-dark: 210 29% 24%;
-    --gold: 41 100% 55%;
-    --sky-blue: 193 54% 58%;
-    --deep-blue: 213 67% 33%;
-    --navy: 213 67% 20%;
+    --gold: 44 82% 74%;
+    --sky-blue: 175 15% 92%;
+    --deep-blue: 210 8% 13%;
+    --navy: 210 8% 10%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -124,11 +125,34 @@
   }
 
   .btn-gold {
-    @apply bg-accent text-accent-foreground font-semibold py-3 px-8 rounded-lg transition-all duration-300 hover:brightness-110 hover:shadow-lg;
+    @apply font-semibold py-3 px-8 rounded-lg transition-all duration-300;
+    background-color: #C65300;
+    color: #FFFFFF;
+    border: 2px solid #C65300;
+    box-shadow: 0 0 15px rgba(198, 83, 0, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-gold:hover {
+    background-color: #B24700;
+    border-color: #C65300;
+    box-shadow: 0 0 25px rgba(198, 83, 0, 0.6), 0 0 35px rgba(198, 83, 0, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .btn-gold:active {
+    box-shadow: 0 0 15px rgba(198, 83, 0, 0.4), inset 0 0 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
   }
 
   .btn-outline-white {
-    @apply border-2 border-white text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 hover:bg-white hover:text-secondary;
+    @apply border-2 font-semibold py-3 px-8 rounded-lg transition-all duration-300;
+    border-color: #C65300;
+    color: #C65300;
+  }
+
+  .btn-outline-white:hover {
+    background-color: #C65300;
+    color: #FFFFFF;
   }
 
   .form-input {

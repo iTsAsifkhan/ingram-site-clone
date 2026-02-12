@@ -4,26 +4,26 @@ const steps = [
   {
     icon: Link2,
     step: "01",
-    title: "Create Your Links",
-    description: "Choose the book you'd like to sell and create your links",
+    title: "Submit Your Manuscript",
+    description: "Tell us about your project and submit your manuscript for review",
   },
   {
     icon: DollarSign,
     step: "02",
-    title: "Set Your Price",
-    description: "Set the purchase price for your books",
+    title: "Professional Services",
+    description: "Work with our editing, design, and production teams",
   },
   {
     icon: Timer,
     step: "03",
-    title: "Set Limitations",
-    description: "Set limitations for purchases, such as how long you'd like your books to be on sale",
+    title: "Quality Printing",
+    description: "High-quality in-house printing with fast 3-day turnaround",
   },
   {
     icon: Share2,
     step: "04",
-    title: "Share & Sell",
-    description: "Share & sell your book!",
+    title: "Global Distribution",
+    description: "Sell your book worldwide through retailers and our bookshop",
   },
 ];
 
@@ -33,12 +33,12 @@ const ProcessSection = () => {
       <div className="container-custom">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <span className="text-primary font-semibold text-lg">Simple Process</span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mt-2 mb-4">
+          <span className="font-semibold text-lg" style={{ color: '#C65300' }}>Simple Process</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2 mb-4" style={{ color: '#212733' }}>
             How Does it Work?
           </h2>
-          <p className="text-muted-foreground text-lg">
-            Get your book published in four simple steps
+          <p className="text-lg" style={{ color: '#212733' }}>
+            Get your book published and distributed to readers worldwide
           </p>
         </div>
 
@@ -48,19 +48,19 @@ const ProcessSection = () => {
             <div key={index} className="process-step group relative">
               {/* Step Number & Icon */}
               <div className="relative mb-6">
-                <div className="w-24 h-24 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <item.icon className="w-10 h-10 text-primary-foreground" />
+                <div className="w-24 h-24 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300" style={{ backgroundColor: '#E3E1D4' }}>
+                  <item.icon className="w-10 h-10" style={{ color: '#C65300' }} />
                 </div>
-                <span className="absolute -top-2 -right-2 w-8 h-8 bg-accent rounded-full flex items-center justify-center text-sm font-bold text-accent-foreground shadow-md">
+                <span className="absolute -top-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-md" style={{ backgroundColor: '#C65300', color: '#FFFFFF' }}>
                   {item.step}
                 </span>
               </div>
 
               {/* Content */}
-              <h3 className="text-xl font-bold text-foreground mb-3">
+              <h3 className="text-xl font-bold mb-3" style={{ color: '#212733' }}>
                 {item.title}
               </h3>
-              <p className="text-muted-foreground">
+              <p style={{ color: '#212733' }}>
                 {item.description}
               </p>
 

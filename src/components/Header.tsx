@@ -1,78 +1,82 @@
-import { Phone, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Phone } from "lucide-react";
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
-    <header className="bg-secondary py-4 px-4 md:px-8 sticky top-0 z-50 shadow-lg">
+    <header className="bg-white py-4 px-4 md:px-8 z-50 shadow-lg">
       <div className="container-custom flex items-center justify-between">
-        {/* Logo */}
-        <a href="/" className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-lg">IP</span>
-          </div>
-          <span className="text-primary-foreground font-bold text-xl hidden sm:block">
-            Ingram Publishing
-          </span>
-        </a>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
-          <a href="#services" className="text-primary-foreground/90 hover:text-primary transition-colors">
-            Services
+        {/* Mobile: Center Logo Only */}
+        <div className="w-full flex justify-center md:hidden">
+          <a href="/" className="flex items-center">
+            <img src="/images/logo.svg" alt="BookBaby" className="h-12 w-auto" />
           </a>
-          <a href="#how-it-works" className="text-primary-foreground/90 hover:text-primary transition-colors">
-            How It Works
-          </a>
-          <a href="#faq" className="text-primary-foreground/90 hover:text-primary transition-colors">
-            FAQ
-          </a>
-        </nav>
-
-        {/* Contact & CTA */}
-        <div className="hidden md:flex items-center gap-6">
-          <a href="tel:833-366-6770" className="flex items-center gap-2 text-primary-foreground hover:text-primary transition-colors">
-            <Phone className="w-5 h-5" />
-            <span className="font-semibold">833-366-6770</span>
-          </a>
-          <button className="btn-gold">
-            Get Started
-          </button>
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <button 
-          className="md:hidden text-primary-foreground"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
-      </div>
+        {/* Desktop: Logo + Nav + Single CTA (Phone Button) */}
+        <div className="hidden md:flex w-full items-center justify-between">
+          {/* Logo */}
+          <a href="/" className="flex items-center">
+            <img src="/images/logo.svg" alt="BookBaby" className="h-12 w-auto" />
+          </a>
 
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-secondary border-t border-primary/20 py-4 px-4 animate-fade-in">
-          <nav className="flex flex-col gap-4">
-            <a href="#services" className="text-primary-foreground/90 hover:text-primary py-2">
+          {/* Desktop Navigation */}
+          <nav className="flex items-center gap-8">
+            <a
+              href="#services"
+              className="hover:text-blue-600 transition-colors"
+              style={{ color: "#212733" }}
+            >
               Services
             </a>
-            <a href="#how-it-works" className="text-primary-foreground/90 hover:text-primary py-2">
+            <a
+              href="#how-it-works"
+              className="hover:text-blue-600 transition-colors"
+              style={{ color: "#212733" }}
+            >
               How It Works
             </a>
-            <a href="#faq" className="text-primary-foreground/90 hover:text-primary py-2">
+            <a
+              href="#faq"
+              className="hover:text-blue-600 transition-colors"
+              style={{ color: "#212733" }}
+            >
               FAQ
             </a>
-            <a href="tel:833-366-6770" className="flex items-center gap-2 text-primary-foreground py-2">
-              <Phone className="w-5 h-5" />
-              <span className="font-semibold">833-366-6770</span>
-            </a>
-            <button className="btn-gold w-full mt-2">
-              Get Started
-            </button>
           </nav>
+
+          {/* Single Button CTA (Phone) */}
+          <a
+            href="tel:18779616878"
+            className="btn-gold relative inline-flex items-center gap-2 overflow-hidden
+                       shadow-lg transition-all duration-300
+                       hover:shadow-2xl hover:-translate-y-[1px]
+                       focus:outline-none focus:ring-2 focus:ring-orange-400/60"
+          >
+            {/* Glowing animated border */}
+            <span
+              className="pointer-events-none absolute inset-0 rounded-[inherit]"
+              style={{
+                boxShadow: "0 0 0 0 rgba(234,179,8,0.0)",
+                animation: "ctaGlow 1.6s ease-in-out infinite",
+              }}
+            />
+
+            <Phone className="w-5 h-5" />
+            <span className="font-semibold">1-877-961-6878</span>
+          </a>
         </div>
-      )}
+      </div>
+
+      {/* Local keyframes (no config needed) */}
+      <style>{`
+        @keyframes ctaGlow {
+          0%, 100% {
+            box-shadow: 0 0 0 0 rgba(234,179,8,0.0), 0 0 0 0 rgba(234,179,8,0.0);
+          }
+          50% {
+            box-shadow: 0 0 0 3px rgba(234,179,8,0.35), 0 0 24px 6px rgba(234,179,8,0.25);
+          }
+        }
+      `}</style>
     </header>
   );
 };
